@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">LabFinalExam</string>
+    <string-array name="topic">
+        <item>Please choose Topic</item>
+        <item>Android Dev</item>
+        <item>Website Dev</item>
+        <item>UX/UI Dev</item>
+        <item>Network Admin</item>
+        <item>Unix Admin</item>
+    </string-array>
+
+    <string-array name="format">
+        <item>Please choose Format</item>
+        <item>Sort By Character</item>
+        <item>Sort By Sequence Registered</item>
+    </string-array>
 </resources>

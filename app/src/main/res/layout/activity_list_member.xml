@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".list_memberActivity">
+
+    <TextView
+        android:id="@+id/header1"
+        android:gravity="center_vertical"
+        android:text="Information of List Member"
+        android:textSize="30sp"
+        android:paddingLeft="20dp"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+    <TextView
+        android:layout_below="@id/header1"
+        android:id="@+id/header2"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Please choose format for display."
+        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Spinner
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/spFormat"
+        android:entries="@array/format"
+        android:layout_below="@id/header2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <ListView
+        android:layout_marginTop="15dp"
+        android:id="@+id/lvDisplay"
+        android:layout_below="@+id/spFormat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+</RelativeLayout>

@@ -1,6 +1,8 @@
 package com.example.evitected.labfinalexam.DatabaseClass;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -8,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Evitected on 30/11/2559.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "LabFinalExam";
+    public static final String DATABASE_NAME = "DbRegister.db";
 
     public DatabaseHelper(Context context, int version) {
         super(context, DATABASE_NAME, null, version);
@@ -16,65 +18,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("CREATE TABLE tb_1" +
-                "_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-                "field1 VARCHAR," +
-                "field2 VARCHAR,");
+        sqLiteDatabase.execSQL("CREATE TABLE tbRegister " +
+                "(_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "name VARCHAR," +
+                "email VARCHAR," +
+                "phone VARCHAR," +
+                "type VARCHAR)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS tb_1");
         onCreate(sqLiteDatabase);
     }
-    public boolean insertData1(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        return false;
-    }
-    /*
-    //Insert
-    public boolean insertVocab(String vocab, String meaning, String example, int cat_id) {
+    public boolean insertRegist(String name, String email, String phone, String type){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues myValue = new ContentValues();
-        myValue.put("vocab", vocab);
-        myValue.put("meaning", meaning);
-        myValue.put("example", example);
-        myValue.put("cat_id", cat_id);
-        long result = db.insert("tb_vocab", null, myValue);
-
-        if (result == -1) {
+        myValue.put("name", name);
+        myValue.put("email", email);
+        myValue.put("phone", phone);
+        myValue.put("type", type);
+        long result = db.insert("tbRegister", null, myValue);
+        if(result == -1){
             return false;
-        }else {
-            return  true;
+        }else{
+            return true;
         }
     }
-    //Select
-    public Cursor getAllCat() {
+
+    public Cursor getListMemByName() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor result = db.rawQuery("select * from tb_cat", null);
+        Cursor result = db.rawQuery("select * from tbRegister order by name", null);
         return result;
     }
-    public boolean deleteVocab(int id){
+
+    public Cursor getListMemByID() {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("tb_vocab","_id = "+id, null) > 0;
-    }
-    //Update
-    public boolean updateVocab(int id, String vocab, String mean, String example,int cat_id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues data = new ContentValues();
-        data.put("vocab",vocab);
-        data.put("meaning", mean);
-        data.put("example", example);
-        data.put("cat_id", cat_id);
-        return db.update("tb_vocab", data,"_id = "+id, null) > 0;
-    }
-    //Delete
-    public Cursor getSelectedVocab(int id){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String sql = "select * from tb_vocab where _id = "+ id;
-        Cursor result = db.rawQuery(sql, null);
-        if(!result.moveToFirst())
-            result.moveToFirst();
+        Cursor result = db.rawQuery("select * from tbRegister order by _id", null);
         return result;
     }
-    */
 }
